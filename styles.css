@@ -1,4 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Libertinus+Serif:wght@400;600;700&display=swap');
+
+.dm-serif-text-regular {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 :root {
     --primary-blue: #2442FF;
     --primary-blue-dark: #0026e6;
@@ -35,7 +44,7 @@ body {
 
 /* Header and Navigation */
 .navbar {
-    background-color:#2442FF;
+    background-color:#0037ecf3;
     padding: 0.75rem 2rem;
     display: flex;
     align-items: center;
@@ -76,7 +85,7 @@ body {
 }
 
 .logo-text {
-    font-family: 'Courier New', Courier, monospace;
+    font-family:sans-serif;
     font-size: 1 rem;
     font-weight: 800;
     color: var(--white);
@@ -110,117 +119,104 @@ body {
 /* Hero Section */
 .hero {
     background-image: url(../images/mag3.png);
-    
-    /* Set height to full viewport height */
     height: 100vh;
-    width: 100vw; /* Ensure full viewport width */
-    
-    display: flex;
-    align-items: center;
-    padding: 4rem 2rem;
-    position: relative;
+    width: 100vw;
+    position: relative; /* Reference for absolute positioning */
     overflow: hidden;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    
-    /* Ensure the background image covers the entire section */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 0; /* Remove padding to maximize space for absolute positioning */
 }
 
 .hero-content {
-    font-family: 'Courier New', Courier, monospace;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: static; /* Remove flex for absolute positioning */
     width: 100%;
     max-width: 1280px;
-    margin: 0 auto;
-   
+    margin: 0 auto; /* Center content container */
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.hero-text {
-    flex: 1;
-    padding-right: 2rem;
-    
-    text-align: right; /* Align text to the left for better readability */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
 
 .hero-title {
-    font-size: 4.5rem; /* Slightly reduced for better balance */
-    font-weight: 900; /* Bolder for emphasis */
-    color: var(--white);
-    line-height: 1.1; /* Tighter line height for compactness */
+   font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    position: absolute;
+    top: 0 !important;
+    right: 10rem !important;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.1;
     margin-bottom: 1.25rem;
-    letter-spacing: -0.02em; /* Subtle letter spacing for clarity */
-    text-transform: uppercase; /* Matches the bold style of "MAG NETWORK" */
-   
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.hero-title .blue {
-    color: var(--primary-blue);
-    font-weight: 900; /* Ensure blue letters are equally bold */
+.hero-title-top {
+    font-size: 3rem;
+    margin-bottom: 0.1rem;
+}
+
+.hero-title-bottom {
+    font-size: 3rem;
 }
 
 .hero-subtitle {
-    font-size: 1.75rem; /* Slightly larger for hierarchy */
-    font-weight: 400; /* Lighter weight for contrast with title */
-    color: rgba(255, 255, 255, 0.9); /* Softer white for subtlety */
-    margin-bottom: 2.5rem; /* More space before social links */
-    line-height: 1.4; /* Improved readability */
-    max-width: 80%; /* Restrict width for cleaner look */
-   
+    padding: 20px;
+    position: absolute;
+    top: 7.5rem !important; /* Moved from .hero-text */
+    right: 5rem !important; /* Aligned with .hero-title */
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    line-height: 1.4;
+    max-width: 40%; /* Adjusted to match .hero-text */
+    text-align: center; /* Center subtitle text */
+    z-index: 999; /* Below .hero-title */
 }
-
-.social-links {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    
-}
-
-.social-link {
-    background-color: var(--white);
-    width: 50px;
-    height: 50px;
+.hero-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 200px; /* Reduced size */
+    height: auto;
+    z-index: 998;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease; /* Smoother transition */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
-.social-link:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-text {
+        position: static; /* Revert to normal flow for mobile */
+        transform: none; /* Remove transform */
+        text-align: center; /* Center text for mobile */
+        max-width: 100%; /* Full width */
+        padding: 1rem; /* Add padding for spacing */
+    }
+
+    .hero-title {
+        font-size: 2.5rem; /* Smaller title */
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem; /* Smaller subtitle */
+        max-width: 100%; /* Full width */
+        margin-left: 0; /* Remove right alignment */
+    }
 }
 
-.social-link i {
-    background: transparent; /* Ensure icons don't inherit gradient */
-}
 
 
 
-.hero-img {
-    /* Use relative units to scale with the viewport or parent container */
-    width: 30vw; /* Adjusts based on viewport width (e.g., 30% of viewport width) */
-    max-width: 450px; /* Caps the size to prevent it from getting too large */
-    aspect-ratio: 1/1; /* Ensures a square shape for the circle */
-    border-radius: 50%;
-   
-    overflow: hidden;
-}
 
-.hero-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image fills the circular container */
-}
 
 /* Section Styles */
 .section {
@@ -325,95 +321,7 @@ body {
     
 }
 
-/* Server Section */
-.server-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-    
-}
 
-.server-card {
-    background-color: var(--white);
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.server-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
-
-.server-icon {
-    width: 60px;
-    height: 60px;
-    background-color: var(--primary-blue);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-}
-
-.server-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.server-icon i {
-    color: var(--white);
-    width: 70px;
-    height: 70px;
-}
-
-.server-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--text-dark);
-   
-}
-
-.server-description {
-    color: #4b5563;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-    
-}
-
-.server-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #e5e7eb;
-   
-}
-
-.server-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-
-.server-stat-value {
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: var(--primary-blue);
-    
-}
-
-.server-stat-label {
-    font-size: 0.875rem;
-    color: #6b7280;
-   
-}
 
 /* Contact Section */
 .contact-form {
@@ -681,21 +589,22 @@ body {
         text-align: center;
     }
 
-    .hero-text {
-        padding-right: 0;
-        margin-bottom: 3rem;
+     .hero-text {
+        position: static; /* Revert to normal flow for mobile */
+        transform: none; /* Remove transform */
         text-align: center; /* Center text for mobile */
+        max-width: 100%; /* Full width */
+        padding: 1rem; /* Add padding for spacing */
     }
 
     .hero-title {
-        font-size: 2.75rem; /* Further reduced for mobile */
+        font-size: 2.5rem; /* Smaller title */
     }
 
-    .hero-subtitle {
-        font-size: 1.5rem;
-        max-width: 90%; /* Slightly wider for mobile */
-        margin-left: auto;
-        margin-right: auto;
+     .hero-subtitle {
+        font-size: 1.2rem; /* Smaller subtitle */
+        max-width: 100%; /* Full width */
+        margin-left: 0; /* Remove right alignment */
     }
 
     .social-links {
